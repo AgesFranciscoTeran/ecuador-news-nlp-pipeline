@@ -9,7 +9,7 @@ DOC_OUT_ROOT.mkdir(parents=True, exist_ok=True)
 # quitar comentarios docling
 HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
-# ✅ convertir &lt;math&gt; a <math> y eliminar tags <math>
+# convertir &lt;math&gt; a <math> y eliminar tags <math>
 MATH_TAG_RE = re.compile(r"</?math>", re.IGNORECASE)
 
 # (opcional) otros tags que podrían colarse
@@ -33,10 +33,10 @@ IDX_END_RE = re.compile(
 def soft_clean_raw(md: str) -> str:
     md = md.replace("\r\n", "\n").replace("\r", "\n")
 
-    # ✅ 0) decode HTML entities (&lt; &gt; &amp; etc.)
+    # 0) decode HTML entities (&lt; &gt; &amp; etc.)
     md = html.unescape(md)
 
-    # ✅ 0.1) elimina tags <math>...</math> manteniendo contenido
+    # 0.1) elimina tags <math>...</math> manteniendo contenido
     md = MATH_TAG_RE.sub("", md)
 
     # (opcional) limpia algunos tags simples si aparecen
