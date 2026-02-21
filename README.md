@@ -61,6 +61,46 @@ Similarity search interface and interactive querying layer.
 
 ---
 
+## Overview
+
+This project focuses on building an end-to-end text processing and retrieval system for large corpora of scanned news articles. It combines:
+
+- OCR for converting scanned news into text  
+- Text cleaning and normalization  
+- Embedding generation (semantic representations)  
+- Fast retrieval (vector search)  
+- Evaluation of semantic relevance and uncertainty  
+
+This pipeline is used for research into semantic uncertainty in historical news datasets from Ecuador.
+
+## Pipeline Components
+
+1. **OCR Module**  
+   Converts scanned documents into raw text using Tesseract.
+
+2. **Preprocessing & Cleaning**  
+   Document segmentation, tokenization, normalization and noise removal.
+
+3. **Embedding Module**  
+   Embeds text using pretrained language models (e.g., Transformer-based).
+
+4. **Vector Search & Retrieval**  
+   Efficient nearest neighbor retrieval using FAISS or similar libraries.
+
+5. **Evaluation & Uncertainty Analysis**  
+   Exploration of retrieval accuracy and model confidence.
+
+## Example Usage
+
+```bash
+python src/ocr_processing.py --input scans/ --output text/
+python src/embeddings.py --input text/ --output vectors/
+python src/retrieval.py --query "Ecuador politics 1999"
+
+```
+
+---
+
 ## Architecture
 
 The pipeline is modular and stage-based:
