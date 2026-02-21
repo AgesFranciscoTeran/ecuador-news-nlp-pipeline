@@ -25,7 +25,7 @@ OUT_ROOT = Path("/home/fteran/Francisco/docling test")
 def main():
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
 
-    # ✅ Buscar SOLO JPG originales
+    # Buscar SOLO JPG originales
     images = sorted(IN_ROOT.glob("*.jpg")) + sorted(IN_ROOT.glob("*.JPG"))
     images = sorted(images)
 
@@ -40,7 +40,7 @@ def main():
 
     print("First 5:", [p.name for p in images[:5]])
 
-    # ✅ Docling usando SuryaOCR plugin
+    # Docling usando SuryaOCR plugin
     pipeline_options = PdfPipelineOptions(
         do_ocr=True,
         ocr_model="suryaocr",
@@ -81,9 +81,9 @@ def main():
 
         except Exception as e:
             (out_dir / "ERROR.txt").write_text(str(e), encoding="utf-8")
-            print(f"❌ ERROR con {img.name}: {e}")
+            print(f"ERROR con {img.name}: {e}")
 
-    print("\nDONE ✅ Saved to:", OUT_ROOT)
+    print("\nDONE Saved to:", OUT_ROOT)
 
 
 if __name__ == "__main__":
