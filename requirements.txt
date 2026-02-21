@@ -1,1 +1,5 @@
-
+faiss-cpu
+numpy
+tqdm
+docling
+scikit-learn
