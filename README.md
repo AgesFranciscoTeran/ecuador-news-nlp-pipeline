@@ -36,6 +36,31 @@ The Docling-based pipeline was adopted after empirical observation of significan
 
 ---
 
+## Architecture
+
+The pipeline is organized in modular stages:
+
+- Extraction → structured document parsing (Docling or baseline OCR)
+- Cleaning → normalization and noise reduction
+- Chunking → semantic segmentation with overlap
+- Filtering → quality-based chunk scoring
+- Embedding → FAISS vector indexing
+- Retrieval → similarity search interface
+- Application layer → interactive querying
+
+Each stage is independently executable and designed for reproducibility.
+
+## Dataset Context
+
+The pipeline was designed to process large-scale Ecuadorian newspaper archives (2001–2022).
+
+Experiments were conducted on subsets ranging from thousands to tens of thousands of documents to evaluate:
+
+- Text cleanliness
+- Structural preservation
+- Chunk quality
+- Downstream retrieval stability
+
 ## Why Docling?
 
 The baseline OCR pipeline produced noisier outputs, layout artifacts, and less stable segmentation. The Docling-based workflow significantly improved structural consistency and reduced noise, resulting in higher-quality chunks for embedding and retrieval.
