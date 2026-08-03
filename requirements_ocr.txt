@@ -1,0 +1,35 @@
+# ── Etapa 0: entorno del OCR (Docling + Surya) ──────────────────────────────
+#
+# ATENCIÓN: este archivo NO se instala con un `pip install -r` plano.
+# surya-ocr y docling declaran dependencias de torch que, si pip las resuelve,
+# reemplazan la build de CUDA por una de CPU y el OCR cae a CPU en silencio.
+# Hay que instalar en ORDEN y con --no-deps donde corresponde.
+#
+#   Usa el script:  ./instalar_ocr.sh /ruta/al/venv
+#   o el Dockerfile, que ejecuta ese mismo script.
+#
+# Este archivo queda como registro de las versiones exactas verificadas.
+
+# 1) PyTorch desde el índice CUDA 12.8 (NO desde PyPI)
+#    pip install --index-url https://download.pytorch.org/whl/cu128 ...
+torch==2.11.0
+torchvision==0.26.0
+cuda-bindings>=12.9.4,<13
+cuda-toolkit==12.8.1
+
+# 2) Base (resolución normal de pip)
+pillow==10.4.0
+transformers==4.51.3
+pydantic>=2.5.3
+accelerate>=1.6.0
+
+# 3) OCR — instalar con --no-deps, en este orden
+surya-ocr==0.17.1
+docling-surya==0.1.0
+docling==2.103.0
+
+# 4) Dependencias de docling que el paso anterior dejó fuera
+docling-core>=2.19.0
+docling-ibm-models>=3.3.5
+docling-parse>=4.0.5
+python-multipart>=0.0.18

@@ -1,0 +1,12 @@
+# ── cron para datahub-ocr: monitoreo + recreación diaria + arranque en boot ──
+# Instalar con: crontab runner/crontab.datahub
+# Nota: fteran ya está en el grupo docker, no requiere sudo.
+
+# Cada hora a los :22 → status check + progreso
+22 * * * * /home/fteran/Proyecto_DataHub/runner/datahub_ctl.sh status >> /home/fteran/Proyecto_DataHub/logs_corpus/ctl.log 2>&1
+
+# 22:00 todos los días → recrea el contenedor (garantiza estado limpio)
+00 22 * * * /home/fteran/Proyecto_DataHub/runner/datahub_ctl.sh recreate >> /home/fteran/Proyecto_DataHub/logs_corpus/ctl.log 2>&1
+
+# Al encender la máquina → asegura que el contenedor arranque
+@reboot /home/fteran/Proyecto_DataHub/runner/datahub_ctl.sh ensure >> /home/fteran/Proyecto_DataHub/logs_corpus/ctl.log 2>&1

@@ -1,0 +1,15 @@
+# ── Etapas 1-8: corpus, auditoría, empalme y base vectorial ─────────────────
+#
+# Este sí se instala normal:  pip install -r requirements_pipeline.txt
+#
+# Solo construir_vectordb.py necesita GPU. Instala torch aparte, desde el
+# índice CUDA, para no quedarte con la build de CPU:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+#
+# Verifica antes de lanzar una corrida larga:
+#   python -c "import torch; print(torch.version.cuda, torch.cuda.is_available())"
+
+sentence-transformers>=5.0
+lancedb>=0.34
+pyarrow>=16
+numpy>=1.26

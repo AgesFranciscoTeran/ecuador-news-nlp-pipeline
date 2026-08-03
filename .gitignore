@@ -1,0 +1,47 @@
+# .gitignore — repositorio en la raíz de Proyecto_DataHub
+#
+# Estrategia de LISTA BLANCA: se ignora todo por defecto y después se admite
+# solo el código y la documentación. Es la opción segura cuando el repositorio
+# vive en un directorio que también contiene decenas de GB de datos, entornos
+# virtuales y binarios: un `git add -A` distraído no puede arrastrar nada
+# pesado.
+#
+# Para añadir un tipo de archivo nuevo, agrega su propia línea con "!".
+# Comprueba siempre antes de confirmar:
+#     git add -A && git ls-files | sort && du -ch $(git ls-files) | tail -1
+
+# ── Se ignora absolutamente todo ─────────────────────────────────────────
+*
+
+# ── Documentación y configuración del proyecto ───────────────────────────
+!.gitignore
+!README.md
+!requirements*.txt
+!Dockerfile
+
+# ── Scripts de la raíz: OCR, instalación, despliegue, empaquetado ────────
+!*.py
+!*.sh
+
+# ── Carpeta del pipeline ─────────────────────────────────────────────────
+!runner/
+runner/*
+!runner/*.py
+!runner/*.sh
+!runner/crontab.datahub
+
+# ── Documentación ────────────────────────────────────────────────────────
+!docs/
+docs/*
+!docs/*.md
+
+# ── Excepciones a las excepciones: registros y salidas de corrida ────────
+*.log
+fila_*.txt
+filas_*.txt
+censo_*.txt
+*.bak
+
+# Todo lo demás queda fuera por la regla "*": venvs/, model_cache/, vectordb/,
+# csv_corpus/, csv_webscraping/, imagenes_periodico_procesadas/, surya_runs/,
+# tesseract-5.3.3/, las carpetas de los diarios, __pycache__/ y .bash_history.
